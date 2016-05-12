@@ -14,6 +14,14 @@ PM10StMarys[PM10StMarys$ST.MARYS.PM10.24h.average..µg.m.. >50,] #days over 50µ
 
 airDataProspect<-read.csv("./Data/HourlyAQI.csv")
 
+png(filename = "AQIProspect.png", width = 480, height = 480, bg = "transparent")
+
+## create the plot
+qplot(x=factor(Time), y = PROSPECT.AQI.hourly.AQI..index., data=airDataProspect, geom="boxplot")
+
+## end png creation
+dev.off()
+
 qplot(x=factor(Time), y = PROSPECT.AQI.hourly.AQI..index., data=airDataProspect, geom="boxplot")
 fit<-lm(PROSPECT.AQI.hourly.AQI..index. ~ factor(Time), data = airDataProspect)
 summary(fit)$coeff
@@ -27,6 +35,13 @@ plot(fit)
 airDataVineyard<-read.csv("./Data/HourlyAQIVineyard.csv")
 airDataVineyard$VINEYARD.AQI.hourly.AQI..index. <-as.numeric(as.character(airDataVineyard$VINEYARD.AQI.hourly.AQI..index.))
 
+png(filename = "AQIVineyard.png", width = 480, height = 480, bg = "transparent")
+
+## create the plot
+qplot(x=factor(Time), y = VINEYARD.AQI.hourly.AQI..index., data=airDataVineyard, geom="boxplot")
+
+## end png creation
+dev.off()
 
 qplot(x=factor(Time), y = VINEYARD.AQI.hourly.AQI..index., data=airDataVineyard, geom="boxplot")
 fit<-lm(VINEYARD.AQI.hourly.AQI..index. ~ factor(Time), data = airDataVineyard)
